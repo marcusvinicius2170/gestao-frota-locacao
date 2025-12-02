@@ -1,27 +1,18 @@
 'use client';
 
-import { Bell, Search, User, Menu } from 'lucide-react';
+import { Bell, Search, User } from 'lucide-react';
 
 interface HeaderProps {
-  onMenuClick?: () => void;
-  userName?: string;
-  userRole?: 'admin' | 'tenant';
+  userName: string;
+  userRole: 'admin' | 'tenant';
 }
 
-export default function Header({ onMenuClick, userName = 'Usuário', userRole = 'admin' }: HeaderProps) {
+export function Header({ userName, userRole }: HeaderProps) {
   return (
-    <header className="fixed top-0 right-0 left-0 lg:left-64 bg-white border-b border-gray-200 px-4 lg:px-8 py-4 z-40">
+    <header className="bg-white border-b border-gray-200 px-8 py-4">
       <div className="flex items-center justify-between">
-        {/* Mobile Menu Button */}
-        <button 
-          onClick={onMenuClick}
-          className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
-        >
-          <Menu className="w-6 h-6 text-gray-600" />
-        </button>
-
         {/* Search */}
-        <div className="flex-1 max-w-xl ml-4 lg:ml-0">
+        <div className="flex-1 max-w-xl">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -41,7 +32,7 @@ export default function Header({ onMenuClick, userName = 'Usuário', userRole = 
           </button>
 
           {/* User */}
-          <div className="hidden sm:flex items-center gap-3 pl-4 border-l border-gray-200">
+          <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
             <div className="text-right">
               <p className="text-sm font-medium text-[#374151]">{userName}</p>
               <p className="text-xs text-gray-500">

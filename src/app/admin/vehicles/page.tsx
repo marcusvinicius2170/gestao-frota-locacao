@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Sidebar } from '@/components/custom/Sidebar';
 import { Header } from '@/components/custom/Header';
-import { StatusBadge } from '@/components/custom/StatusBadge';
+import StatusBadge from '@/components/custom/StatusBadge';
 import { AddVehicleModal } from '@/components/custom/AddVehicleModal';
 import { Plus, Search, Edit, Trash2, Filter } from 'lucide-react';
 import { MOCK_VEHICLES, MOCK_TENANTS } from '@/lib/constants';

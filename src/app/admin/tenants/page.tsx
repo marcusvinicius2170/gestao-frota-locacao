@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Sidebar } from '@/components/custom/Sidebar';
 import { Header } from '@/components/custom/Header';
-import { StatusBadge } from '@/components/custom/StatusBadge';
+import StatusBadge from '@/components/custom/StatusBadge';
 import { AddTenantModal } from '@/components/custom/AddTenantModal';
 import { Plus, Search, Edit, Eye, Phone, Mail } from 'lucide-react';
 import { MOCK_TENANTS } from '@/lib/constants';

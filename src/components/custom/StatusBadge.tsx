@@ -26,3 +26,6 @@ export function StatusBadge({ status, children }: StatusBadgeProps) {
     </span>
   );
 }
+
+// Export default também para compatibilidade
+export default StatusBadge;

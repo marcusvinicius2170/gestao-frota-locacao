@@ -1,169 +1,177 @@
 'use client';
 
 import { useState } from 'react';
-import { Car, Lock, Mail, ArrowRight } from 'lucide-react';
+import { CarFront, CheckCircle, Users, CreditCard, Wrench, BarChart3, TrendingUp, Star, ChevronRight, ArrowRight, Menu, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-export default function LoginPage() {
+export default function LandingPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState<'admin' | 'tenant'>('admin');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Simulação de login
-    if (userType === 'admin') {
-      router.push('/admin/dashboard');
-    } else {
-      router.push('/tenant/dashboard');
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
+    setMobileMenuOpen(false);
+  };
+
+  const goToQuiz = () => {
+    router.push('/quiz');
+  };
+
+  const goToLogin = () => {
+    router.push('/login');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0A3556] via-[#1E88E5] to-[#0A3556] flex items-center justify-center p-4">
-      <div className="w-full max-w-6xl grid md:grid-cols-2 gap-8 items-center">
-        {/* Left Side - Branding */}
-        <div className="text-white space-y-6 hidden md:block">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center">
-              <Car className="w-10 h-10 text-[#0A3556]" />
-            </div>
-            <div>
-              <h1 className="text-4xl font-bold">Luvi Locadora</h1>
-              <p className="text-white/80">Sistema de Gestão de Frota</p>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                <span className="text-lg">✓</span>
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg">Gestão Completa</h3>
-                <p className="text-white/70">Controle total da sua frota de veículos</p>
-              </div>
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <CarFront className="w-8 h-8 text-[#1E88E5]" />
+              <span className="ml-2 text-xl font-bold text-[#374151]">Luvi Locadora</span>
             </div>
 
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                <span className="text-lg">✓</span>
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg">Controle Financeiro</h3>
-                <p className="text-white/70">Acompanhe pagamentos e receitas em tempo real</p>
-              </div>
-            </div>
+            <div className="flex items-center gap-4">
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 text-[#374151] hover:text-[#1E88E5]"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
 
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                <span className="text-lg">✓</span>
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg">Portal do Locatário</h3>
-                <p className="text-white/70">Acesso dedicado para seus motoristas</p>
-              </div>
-            </div>
-          </div>
-        </div>
+              <button
+                onClick={goToLogin}
+                className="hidden md:block border border-[#1E88E5] text-[#1E88E5] px-4 py-2 rounded-lg hover:bg-[#1E88E5] hover:text-white transition-colors font-medium"
+              >
+                Entrar
+              </button>
 
-        {/* Right Side - Login Form */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-10">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-[#0A3556] mb-2">Bem-vindo</h2>
-            <p className="text-gray-600">Faça login para acessar o sistema</p>
-          </div>
-
-          {/* User Type Toggle */}
-          <div className="flex gap-2 mb-6 p-1 bg-[#F7F9FC] rounded-lg">
-            <button
-              type="button"
-              onClick={() => setUserType('admin')}
-              className={`flex-1 py-2 px-4 rounded-md font-medium transition-all ${
-                userType === 'admin'
-                  ? 'bg-[#1E88E5] text-white shadow-md'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              Administrador
-            </button>
-            <button
-              type="button"
-              onClick={() => setUserType('tenant')}
-              className={`flex-1 py-2 px-4 rounded-md font-medium transition-all ${
-                userType === 'tenant'
-                  ? 'bg-[#1E88E5] text-white shadow-md'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              Locatário
-            </button>
-          </div>
-
-          <form onSubmit={handleLogin} className="space-y-5">
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                E-mail
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="seu@email.com"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Senha
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Remember & Forgot */}
-            <div className="flex items-center justify-between">
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 text-[#1E88E5] border-gray-300 rounded focus:ring-[#1E88E5]"
-                />
-                <span className="text-sm text-gray-600">Lembrar-me</span>
-              </label>
-              <button type="button" className="text-sm text-[#1E88E5] hover:underline">
-                Esqueceu a senha?
+              <button
+                onClick={goToQuiz}
+                className="bg-[#1E88E5] text-white px-6 py-2 rounded-lg hover:bg-[#1976D2] transition-colors font-medium"
+              >
+                Comece a usar
               </button>
             </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full bg-[#1E88E5] text-white py-3 rounded-lg font-medium hover:bg-[#1976D2] transition-colors flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
-            >
-              Entrar
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </form>
+          </div>
         </div>
-      </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-200">
+            <div className="px-4 py-4 space-y-2">
+              <button
+                onClick={goToLogin}
+                className="block w-full text-left px-4 py-2 text-[#1E88E5] border border-[#1E88E5] rounded-lg hover:bg-[#1E88E5] hover:text-white transition-colors font-medium"
+              >
+                Entrar
+              </button>
+              <button
+                onClick={goToQuiz}
+                className="block w-full text-left px-4 py-2 bg-[#1E88E5] text-white rounded-lg hover:bg-[#1976D2] transition-colors font-medium"
+              >
+                Comece a usar
+              </button>
+            </div>
+          </div>
+        )}
+      </header>
+
+      {/* Hero Section */}
+      <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#374151] mb-6">
+              Sistema de Gestão de Frota <span className="text-[#1E88E5]">Completo</span>
+            </h1>
+            <p className="text-xl text-[#6B7280] mb-8 max-w-3xl mx-auto">
+              Gerencie sua locadora de veículos com eficiência. Controle financeiro, manutenções, locatários e muito mais em uma única plataforma.
+            </p>
+            <div className="flex justify-center">
+              <button
+                onClick={goToQuiz}
+                className="bg-[#1E88E5] text-white px-8 py-4 rounded-lg hover:bg-[#1976D2] transition-colors font-semibold text-lg flex items-center justify-center gap-2"
+              >
+                Comece a usar <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#374151] mb-4">Funcionalidades Principais</h2>
+            <p className="text-lg text-[#6B7280]">Tudo que você precisa para gerenciar sua locadora</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <CarFront className="w-12 h-12 text-[#1E88E5] mb-4" />
+              <h3 className="text-xl font-semibold text-[#374151] mb-2">Gestão de Veículos</h3>
+              <p className="text-[#6B7280]">Cadastre e controle todos os seus veículos com detalhes completos.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <Users className="w-12 h-12 text-[#1E88E5] mb-4" />
+              <h3 className="text-xl font-semibold text-[#374151] mb-2">Controle de Locatários</h3>
+              <p className="text-[#6B7280]">Gerencie seus clientes e contratos de locação de forma eficiente.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <CreditCard className="w-12 h-12 text-[#1E88E5] mb-4" />
+              <h3 className="text-xl font-semibold text-[#374151] mb-2">Financeiro</h3>
+              <p className="text-[#6B7280]">Acompanhe receitas, despesas e lucros da sua locadora.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <Wrench className="w-12 h-12 text-[#1E88E5] mb-4" />
+              <h3 className="text-xl font-semibold text-[#374151] mb-2">Manutenção</h3>
+              <p className="text-[#6B7280]">Controle manutenções preventivas e corretivas dos veículos.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <BarChart3 className="w-12 h-12 text-[#1E88E5] mb-4" />
+              <h3 className="text-xl font-semibold text-[#374151] mb-2">Relatórios</h3>
+              <p className="text-[#6B7280]">Gere relatórios detalhados para tomada de decisões.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <TrendingUp className="w-12 h-12 text-[#1E88E5] mb-4" />
+              <h3 className="text-xl font-semibold text-[#374151] mb-2">Dashboard</h3>
+              <p className="text-[#6B7280]">Visualize métricas importantes em tempo real.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-[#1E88E5]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Pronto para começar?</h2>
+          <p className="text-xl text-blue-100 mb-8">Junte-se a milhares de locadoras que já confiam no Luvi</p>
+          <button
+            onClick={goToQuiz}
+            className="bg-white text-[#1E88E5] px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-lg flex items-center justify-center gap-2 mx-auto"
+          >
+            Comece a usar <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#374151] text-white py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center mb-4 md:mb-0">
+              <CarFront className="w-8 h-8 text-[#1E88E5]" />
+              <span className="ml-2 text-xl font-bold">Luvi Locadora</span>
+            </div>
+            <p className="text-gray-300">&copy; 2024 Luvi Locadora. Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
