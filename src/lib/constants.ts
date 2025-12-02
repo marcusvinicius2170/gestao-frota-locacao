@@ -79,7 +79,9 @@ export const MOCK_TENANTS: Tenant[] = [
   {
     id: '1',
     name: 'João Silva',
+    rg: '12.345.678-9',
     cpf: '123.456.789-00',
+    address: 'Rua das Flores, 123 - Centro, São Paulo - SP',
     phone: '(11) 98765-4321',
     email: 'joao.silva@email.com',
     startDate: '2024-01-15',
@@ -95,7 +97,9 @@ export const MOCK_TENANTS: Tenant[] = [
   {
     id: '2',
     name: 'Maria Santos',
+    rg: '98.765.432-1',
     cpf: '987.654.321-00',
+    address: 'Av. Paulista, 1000 - Bela Vista, São Paulo - SP',
     phone: '(11) 91234-5678',
     email: 'maria.santos@email.com',
     startDate: '2024-02-01',
@@ -111,7 +115,9 @@ export const MOCK_TENANTS: Tenant[] = [
   {
     id: '3',
     name: 'Carlos Oliveira',
+    rg: '45.678.912-3',
     cpf: '456.789.123-00',
+    address: 'Rua Augusta, 500 - Consolação, São Paulo - SP',
     phone: '(11) 99876-5432',
     email: 'carlos.oliveira@email.com',
     startDate: '2023-11-20',

@@ -39,7 +39,7 @@ export function AddTenantModal({ isOpen, onClose, onSave }: AddTenantModalProps)
       email: formData.email,
       depositAmount: parseFloat(formData.depositAmount),
       depositBalance: parseFloat(formData.depositBalance || formData.depositAmount),
-      weeklyRent: formData.weeklyRent,
+      weeklyRent: parseFloat(formData.weeklyRent),
       startDate: formData.startDate,
       endDate: formData.endDate || undefined,
       contractStatus: formData.contractStatus,
@@ -200,10 +200,12 @@ export function AddTenantModal({ isOpen, onClose, onSave }: AddTenantModalProps)
                   Valor Semanal *
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   value={formData.weeklyRent}
                   onChange={(e) => setFormData({ ...formData, weeklyRent: e.target.value })}
                   placeholder="500"
+                  step="0.01"
+                  min="0"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
                   required
                 />

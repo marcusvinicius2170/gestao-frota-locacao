@@ -19,7 +19,9 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
     color: '',
     year: new Date().getFullYear(),
     mileage: 0,
+    purchaseValue: '',
     weeklyRent: '',
+    monthlyRent: '',
     currentTenantId: '',
     currentTenantName: '',
     status: 'available' as 'available' | 'rented' | 'maintenance',
@@ -35,7 +37,9 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
       color: formData.color,
       year: formData.year,
       mileage: formData.mileage,
-      weeklyRent: formData.weeklyRent,
+      purchaseValue: parseFloat(formData.purchaseValue) || 0,
+      weeklyRent: parseFloat(formData.weeklyRent),
+      monthlyRent: parseFloat(formData.monthlyRent) || parseFloat(formData.weeklyRent) * 4,
       currentTenantId: formData.currentTenantId || undefined,
       currentTenantName: formData.currentTenantName || undefined,
       status: formData.status,
@@ -52,7 +56,9 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
       color: '',
       year: new Date().getFullYear(),
       mileage: 0,
+      purchaseValue: '',
       weeklyRent: '',
+      monthlyRent: '',
       currentTenantId: '',
       currentTenantName: '',
       status: 'available',
@@ -183,20 +189,55 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Valor Semanal *
+                Valor de Compra
               </label>
               <input
-                type="text"
-                value={formData.weeklyRent}
-                onChange={(e) => setFormData({ ...formData, weeklyRent: e.target.value })}
-                placeholder="500"
+                type="number"
+                value={formData.purchaseValue}
+                onChange={(e) => setFormData({ ...formData, purchaseValue: e.target.value })}
+                placeholder="50000"
+                step="0.01"
+                min="0"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
-                required
               />
             </div>
           </div>
 
           {/* Row 4 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Valor Semanal *
+              </label>
+              <input
+                type="number"
+                value={formData.weeklyRent}
+                onChange={(e) => setFormData({ ...formData, weeklyRent: e.target.value })}
+                placeholder="500"
+                step="0.01"
+                min="0"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Valor Mensal
+              </label>
+              <input
+                type="number"
+                value={formData.monthlyRent}
+                onChange={(e) => setFormData({ ...formData, monthlyRent: e.target.value })}
+                placeholder="2000"
+                step="0.01"
+                min="0"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          {/* Row 5 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">

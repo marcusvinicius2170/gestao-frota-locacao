@@ -47,10 +47,13 @@ export interface Vehicle {
 export interface Tenant {
   id: string;
   name: string;
+  rg: string;
   cpf: string;
+  address: string;
   phone: string;
   email: string;
   startDate: string;
+  endDate?: string;
   weeklyRent: number;
   depositAmount: number;
   depositBalance: number;
