@@ -49,20 +49,20 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         {/* Logo e Título */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6 sm:mb-8">
           <div className="flex justify-center items-center mb-4">
-            <CarFront className="w-12 h-12 text-[#1E88E5]" />
+            <CarFront className="w-10 h-10 sm:w-12 sm:h-12 text-[#1E88E5]" />
           </div>
-          <h1 className="text-3xl font-bold text-[#374151] mb-2">Luvi Locadora</h1>
-          <p className="text-[#6B7280]">Entre na sua conta para continuar</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#374151] mb-2">Luvi Locadora</h1>
+          <p className="text-sm sm:text-base text-[#6B7280]">Entre na sua conta para continuar</p>
         </div>
 
         {/* Card de Login */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <form onSubmit={handleLogin} className="space-y-6">
+        <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+          <form onSubmit={handleLogin} className="space-y-5 sm:space-y-6">
             {/* Mensagem de Erro */}
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3 sm:p-4 flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <p className="text-sm text-red-800 font-medium">{error}</p>
@@ -83,7 +83,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent outline-none transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent outline-none transition-all text-sm sm:text-base"
                   placeholder="seu@email.com"
                 />
               </div>
@@ -102,7 +102,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent outline-none transition-all"
+                  className="w-full pl-10 pr-12 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent outline-none transition-all text-sm sm:text-base"
                   placeholder="••••••••"
                 />
                 <button
@@ -116,7 +116,7 @@ export default function LoginPage() {
             </div>
 
             {/* Esqueceu a senha */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex items-center">
                 <input
                   id="remember"
@@ -129,7 +129,7 @@ export default function LoginPage() {
               </div>
               <button
                 type="button"
-                className="text-sm text-[#1E88E5] hover:text-[#1976D2] font-medium"
+                className="text-sm text-[#1E88E5] hover:text-[#1976D2] font-medium text-left sm:text-right"
               >
                 Esqueceu a senha?
               </button>
@@ -139,14 +139,14 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#1E88E5] text-white py-3 rounded-lg hover:bg-[#1976D2] transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-[#1E88E5] text-white py-2.5 sm:py-3 rounded-lg hover:bg-[#1976D2] transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
             >
               {isLoading ? 'Entrando...' : 'Entrar'}
             </button>
           </form>
 
           {/* Divider */}
-          <div className="mt-6 mb-6 flex items-center">
+          <div className="mt-5 sm:mt-6 mb-5 sm:mb-6 flex items-center">
             <div className="flex-1 border-t border-gray-300"></div>
             <span className="px-4 text-sm text-[#6B7280]">ou</span>
             <div className="flex-1 border-t border-gray-300"></div>
@@ -168,7 +168,7 @@ export default function LoginPage() {
         </div>
 
         {/* Voltar para home */}
-        <div className="text-center mt-6">
+        <div className="text-center mt-4 sm:mt-6">
           <button
             onClick={goToHome}
             className="text-sm text-[#6B7280] hover:text-[#374151]"
@@ -178,7 +178,7 @@ export default function LoginPage() {
         </div>
 
         {/* Credenciais de teste */}
-        <div className="mt-8 bg-white/80 backdrop-blur-sm rounded-lg p-4 border border-blue-200">
+        <div className="mt-6 sm:mt-8 bg-white/80 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-blue-200">
           <p className="text-xs font-semibold text-[#374151] mb-2">🔐 Credenciais de Teste:</p>
           <div className="space-y-1 text-xs text-[#6B7280]">
             <p><strong>Admin:</strong> admin@luvi.com / admin123</p>

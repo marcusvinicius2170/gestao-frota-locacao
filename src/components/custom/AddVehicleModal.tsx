@@ -79,11 +79,11 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+      <div className="bg-white rounded-xl p-4 sm:p-6 lg:p-8 max-w-3xl w-full my-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-[#0A3556]">Adicionar Novo Veículo</h2>
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#0A3556]">Adicionar Novo Veículo</h2>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -93,9 +93,9 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           {/* Row 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Placa *
@@ -105,7 +105,7 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
                 value={formData.plate}
                 onChange={(e) => setFormData({ ...formData, plate: e.target.value.toUpperCase() })}
                 placeholder="ABC-1234"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
                 required
               />
             </div>
@@ -119,14 +119,14 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
                 value={formData.brand}
                 onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
                 placeholder="Ex: Toyota, Honda, Fiat"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
                 required
               />
             </div>
           </div>
 
           {/* Row 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Modelo *
@@ -136,7 +136,7 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
                 value={formData.model}
                 onChange={(e) => setFormData({ ...formData, model: e.target.value })}
                 placeholder="Ex: Corolla, Civic, Uno"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
                 required
               />
             </div>
@@ -150,14 +150,14 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
                 value={formData.color}
                 onChange={(e) => setFormData({ ...formData, color: e.target.value })}
                 placeholder="Ex: Branco, Preto, Prata"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
                 required
               />
             </div>
           </div>
 
           {/* Row 3 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Ano *
@@ -168,7 +168,7 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
                 onChange={(e) => setFormData({ ...formData, year: parseInt(e.target.value) })}
                 min="1990"
                 max={new Date().getFullYear() + 1}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
                 required
               />
             </div>
@@ -182,12 +182,12 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
                 value={formData.mileage}
                 onChange={(e) => setFormData({ ...formData, mileage: parseInt(e.target.value) })}
                 min="0"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
                 required
               />
             </div>
 
-            <div>
+            <div className="sm:col-span-2 lg:col-span-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Valor de Compra
               </label>
@@ -198,13 +198,13 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
                 placeholder="50000"
                 step="0.01"
                 min="0"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
               />
             </div>
           </div>
 
           {/* Row 4 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Valor Semanal *
@@ -216,7 +216,7 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
                 placeholder="500"
                 step="0.01"
                 min="0"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
                 required
               />
             </div>
@@ -232,13 +232,13 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
                 placeholder="2000"
                 step="0.01"
                 min="0"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
               />
             </div>
           </div>
 
           {/* Row 5 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Locatário
@@ -246,7 +246,7 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
               <select
                 value={formData.currentTenantId}
                 onChange={handleTenantChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
               >
                 <option value="">Nenhum (Disponível)</option>
                 {tenants.map((tenant) => (
@@ -264,7 +264,7 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent text-sm sm:text-base"
                 required
               >
                 <option value="available">Disponível</option>
@@ -275,17 +275,17 @@ export function AddVehicleModal({ isOpen, onClose, onSave, tenants }: AddVehicle
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3 pt-4 border-t border-gray-200">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium text-sm sm:text-base"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-[#1E88E5] text-white rounded-lg hover:bg-[#1976D2] transition-colors font-medium shadow-lg"
+              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#1E88E5] text-white rounded-lg hover:bg-[#1976D2] transition-colors font-medium shadow-lg text-sm sm:text-base"
             >
               Salvar Veículo
             </button>

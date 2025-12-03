@@ -64,62 +64,63 @@ export default function AdminDashboard() {
 
   return (
     <div className="flex min-h-screen bg-[#F7F9FC]">
-      <Sidebar userRole="admin" />
+      <Sidebar userRole="admin" isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       
-      <div className="flex-1 flex flex-col">
-        <Header userName="Admin" userRole="admin" />
+      <div className="flex-1 flex flex-col min-w-0">
+        <Header userName="Admin" userRole="admin" onMenuClick={() => setSidebarOpen(true)} />
         
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8">
           <div className="max-w-7xl mx-auto">
             {/* Page Header */}
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold text-[#0A3556] mb-2">Dashboard</h1>
-              <p className="text-gray-600">Visão geral do sistema Luvi Locadora</p>
+            <div className="mb-6 sm:mb-8">
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#0A3556] mb-2">Dashboard</h1>
+              <p className="text-sm sm:text-base text-gray-600">Visão geral do sistema Luvi Locadora</p>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {/* Stats Grid - Mobile First */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {stats.map((stat, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`${stat.color} w-12 h-12 rounded-lg flex items-center justify-center`}>
-                      <stat.icon className="w-6 h-6 text-white" />
+                <div key={index} className="bg-white rounded-xl shadow-sm p-4 sm:p-6 border border-gray-100">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className={`${stat.color} w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center`}>
+                      <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                   </div>
-                  <h3 className="text-gray-600 text-sm font-medium mb-1">{stat.title}</h3>
-                  <p className="text-3xl font-bold text-[#0A3556] mb-2">{stat.value}</p>
-                  <p className="text-sm text-gray-500">{stat.change}</p>
+                  <h3 className="text-gray-600 text-xs sm:text-sm font-medium mb-1">{stat.title}</h3>
+                  <p className="text-2xl sm:text-3xl font-bold text-[#0A3556] mb-1 sm:mb-2">{stat.value}</p>
+                  <p className="text-xs sm:text-sm text-gray-500">{stat.change}</p>
                 </div>
               ))}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            {/* Charts Section - Responsivo */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {/* Vehicle Status */}
-              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-                <h2 className="text-xl font-bold text-[#0A3556] mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 border border-gray-100">
+                <h2 className="text-lg sm:text-xl font-bold text-[#0A3556] mb-4 flex items-center gap-2">
                   <Car className="w-5 h-5" />
                   Status da Frota
                 </h2>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {vehicleStatus.map((item, index) => (
                     <div key={index} className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3">
                         <div className={`w-3 h-3 rounded-full ${item.color}`}></div>
-                        <span className="text-gray-700">{item.status}</span>
+                        <span className="text-sm sm:text-base text-gray-700">{item.status}</span>
                       </div>
-                      <span className="font-bold text-[#0A3556]">{item.count}</span>
+                      <span className="text-lg sm:text-xl font-bold text-[#0A3556]">{item.count}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Quick Stats */}
-              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 lg:col-span-2">
-                <h2 className="text-xl font-bold text-[#0A3556] mb-4 flex items-center gap-2">
+              {/* Weekly Revenue Chart */}
+              <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 border border-gray-100 lg:col-span-2">
+                <h2 className="text-lg sm:text-xl font-bold text-[#0A3556] mb-4 flex items-center gap-2">
                   <TrendingUp className="w-5 h-5" />
                   Receita Semanal
                 </h2>
-                <div className="h-48 flex items-end justify-between gap-2">
+                <div className="h-40 sm:h-48 flex items-end justify-between gap-1 sm:gap-2">
                   {[65, 80, 75, 90, 85, 95, 100].map((height, index) => (
                     <div key={index} className="flex-1 flex flex-col items-center gap-2">
                       <div 
@@ -133,31 +134,33 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            {/* Recent Payments */}
+            {/* Recent Payments - Tabela Responsiva */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-100">
-              <div className="p-6 border-b border-gray-100">
-                <h2 className="text-xl font-bold text-[#0A3556] flex items-center gap-2">
+              <div className="p-4 sm:p-6 border-b border-gray-100">
+                <h2 className="text-lg sm:text-xl font-bold text-[#0A3556] flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
                   Pagamentos Recentes
                 </h2>
               </div>
-              <div className="overflow-x-auto">
+
+              {/* Desktop Table */}
+              <div className="hidden md:block overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-[#F7F9FC]">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                      <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                         Locatário
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                      <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                         Veículo
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                      <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                         Valor
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                      <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                         Data
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                      <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                         Status
                       </th>
                     </tr>
@@ -165,19 +168,19 @@ export default function AdminDashboard() {
                   <tbody className="divide-y divide-gray-100">
                     {recentPayments.map((payment) => (
                       <tr key={payment.id} className="hover:bg-[#F7F9FC] transition-colors">
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                           <div className="font-medium text-gray-900">{payment.tenant}</div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-600">{payment.vehicle}</div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                           <div className="font-medium text-gray-900">{payment.amount}</div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-600">{payment.date}</div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                           {payment.status === 'paid' && (
                             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                               <CheckCircle className="w-3 h-3" />
@@ -201,6 +204,42 @@ export default function AdminDashboard() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Mobile Cards */}
+              <div className="md:hidden divide-y divide-gray-100">
+                {recentPayments.map((payment) => (
+                  <div key={payment.id} className="p-4 hover:bg-[#F7F9FC] transition-colors">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <p className="font-medium text-gray-900">{payment.tenant}</p>
+                        <p className="text-sm text-gray-600 mt-1">{payment.vehicle}</p>
+                      </div>
+                      {payment.status === 'paid' && (
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                          <CheckCircle className="w-3 h-3" />
+                          Pago
+                        </span>
+                      )}
+                      {payment.status === 'pending' && (
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                          <AlertCircle className="w-3 h-3" />
+                          Pendente
+                        </span>
+                      )}
+                      {payment.status === 'late' && (
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                          <XCircle className="w-3 h-3" />
+                          Atrasado
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
+                      <span className="text-sm text-gray-600">{payment.date}</span>
+                      <span className="font-semibold text-[#0A3556]">{payment.amount}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
